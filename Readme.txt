@@ -86,18 +86,60 @@ This means that we can make use of this remembered value as we're updating our f
 
 * So then the question really becomes, well how can we use a function that gives a different output depending on the previous value?
 
-setFullName(prevValue =>{
+const [fullName, setFullName] = useState({
+    fName: "",
+    lName: ""
+  });
+
+  function handleChange(event) {
+    const newValue = event.target.value
+    const inputName = event.target.name
+
+    setFullName(prevValue =>{
+        // console.log(prevValue)
+        if (inputName === 'fName') {
+          return {
+            fName: newValue,
+            lName: prevValue.lName
+          }
+        } else if (inputName === 'lName') {
+          return {
+            fName: prevValue.fName,
+            lName: newValue
+          }
+        }
+    
+       })
+  }
+
+  * we can make this simple
+
+   const [fullName, setFullName] = useState({
+    fName: "",
+    lName: ""
+  });
+
+  function handleChange(event) {
+    // destructring
+    const {value, name} = event.target;
+
+   setFullName(prevValue =>{
     // console.log(prevValue)
-    if (inputName === 'fName') {
+    if (name === 'fName') {
       return {
-        fName: newValue,
+        fName: value,
         lName: prevValue.lName
       }
-    } else if (inputName === 'lName') {
+    } else if (name === 'lName') {
       return {
         fName: prevValue.fName,
-        lName: newValue
+        lName: value
       }
     }
 
    })
+
+  }
+
+* make sure that in the future when you're creating your own apps, or in any of the exercises or challenges,
+don't try to access the event or anything related to the event, inside a stateful setter. e.g setName

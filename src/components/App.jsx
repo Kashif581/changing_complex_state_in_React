@@ -8,20 +8,20 @@ function App() {
   });
 
   function handleChange(event) {
-    const newValue = event.target.value
-    const inputName = event.target.name
+    // destructring
+    const {value, name} = event.target;
 
    setFullName(prevValue =>{
     // console.log(prevValue)
-    if (inputName === 'fName') {
+    if (name === 'fName') {
       return {
-        fName: newValue,
+        fName: value,
         lName: prevValue.lName
       }
-    } else if (inputName === 'lName') {
+    } else if (name === 'lName') {
       return {
         fName: prevValue.fName,
-        lName: newValue
+        lName: value
       }
     }
 
