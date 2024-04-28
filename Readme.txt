@@ -77,3 +77,27 @@ function handleChange(event) {
     }
 }
 
+* we want to get hold of the previous value of this fullName object and then only add to it the parts which have been changed. In order to do this,
+* this is really the key. As we type into our inputs, React will re-render our App component,
+but our
+
+* app has state, right? In the form of the fullName JavaScript object. And React remembers the value of this object.
+This means that we can make use of this remembered value as we're updating our first name or our last name.
+
+* So then the question really becomes, well how can we use a function that gives a different output depending on the previous value?
+
+setFullName(prevValue =>{
+    // console.log(prevValue)
+    if (inputName === 'fName') {
+      return {
+        fName: newValue,
+        lName: prevValue.lName
+      }
+    } else if (inputName === 'lName') {
+      return {
+        fName: prevValue.fName,
+        lName: newValue
+      }
+    }
+
+   })

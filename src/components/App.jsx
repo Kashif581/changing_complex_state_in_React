@@ -11,11 +11,21 @@ function App() {
     const newValue = event.target.value
     const inputName = event.target.name
 
-    if (inputName === 'fName'){
-      setFullName({fName : newValue})
+   setFullName(prevValue =>{
+    // console.log(prevValue)
+    if (inputName === 'fName') {
+      return {
+        fName: newValue,
+        lName: prevValue.lName
+      }
     } else if (inputName === 'lName') {
-      setFullName({lName:newValue})
+      return {
+        fName: prevValue.fName,
+        lName: newValue
+      }
     }
+
+   })
 
   }
 
